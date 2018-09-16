@@ -1,6 +1,6 @@
 {
   "name": "colors-diff",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Detect collision between 2 given colors. Return a new color if 2 colors are too close",
   "main": "lib/colors-diff.js",
   "scripts": {
