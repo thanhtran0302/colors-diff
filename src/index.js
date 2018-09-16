@@ -5,13 +5,17 @@
  * Then we have to pick a new color from the rplColors array.
  * And we restart the process to to compute a new color diff ratio.
  *
- * @param fColor
- * @param sColor
- * @param acptRatio
- * @param rplColors
+ * @param {String} fColor
+ * @param {String} sColor
+ * @param {Number} acptRatio
+ * @param {Array.<String>} rplColors
  */
-export default function colorsDiff(fColor, sColor, acptRatio, rplColors, opts) {
-    let options = buildOpts(opts);
+export default function colorsDiff(fColor, sColor, acptRatio, rplColors/*, opts*/) {
+    if (!fColor || !sColor) {
+        return '#FFFFFF';
+    }
+
+    //let options = buildOpts(opts);
     let fRGB = hexOrRgbToRGBArray(fColor);
     let sRGB = hexOrRgbToRGBArray(sColor);
 
@@ -23,7 +27,7 @@ export default function colorsDiff(fColor, sColor, acptRatio, rplColors, opts) {
         return invertColor([], hexToRGBArray(sColor));
     }
 
-    if (rplColors.length === 0) {
+    /*if (rplColors.length === 0) {
         if (options.invertColor) {
             return invertColor([], hexToRGBArray(sColor));
         }
@@ -32,8 +36,8 @@ export default function colorsDiff(fColor, sColor, acptRatio, rplColors, opts) {
 
     if (options.invertColor) {
         return invertColor(rplColors, sRGB);
-    }
-    return minColorDist(rplColors, sColor, acptRatio);
+    }*/
+    return minColorDiff(rplColors, sColor, acptRatio);
 }
 
 /**
@@ -51,7 +55,7 @@ function hexOrRgbToRGBArray(color) {
     return null;
 }
 
-function buildOpts(opts) {
+/*function buildOpts(opts) {
     let options = {};
 
     if (typeof opts !== 'undefined') {
@@ -61,7 +65,7 @@ function buildOpts(opts) {
         options.invertColor = false;
     }
     return options;
-}
+}*/
 
 /**
  * Check if the given string is a hex format.
@@ -142,7 +146,7 @@ function hexToRGBArray(color) {
  * @param fRGB
  * @param sRGB
  */
-function computeColorsDist(fRGB, sRGB) {
+function computeColorsDiff(fRGB, sRGB) {
     let r = 255 - Math.abs(fRGB[0] - sRGB[0]);
     let g = 255 - Math.abs(fRGB[1] - sRGB[1]);
     let b = 255 - Math.abs(fRGB[2] - sRGB[2]);
@@ -166,15 +170,15 @@ function computeColorsDist(fRGB, sRGB) {
  * @param cmpColor
  * @param acptRatio
  */
-function minColorDist(rplColors, cmpColor, acptRatio) {
+function minColorDiff(rplColors, cmpColor, acptRatio) {
     let minColor = rplColors[0];
     let cmpColorHex = hexToRGBArray(cmpColor);
 
     for (let i = 0; i < rplColors.length; ++i) {
         let curHexColor = hexToRGBArray(rplColors[i]);
-        let colorDist = computeColorsDist(curHexColor, cmpColorHex);
+        let colorDiff = computeColorsDiff(curHexColor, cmpColorHex);
 
-        if (colorDist < acptRatio) {
+        if (colorDiff < acptRatio) {
             minColor = rplColors[i];
         }
     }
