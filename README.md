@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/03t02/colors-diff.svg?branch=master)](https://travis-ci.org/03t02/colors-diff)
+
 ## Colors diff
 
 A litle library that allows you to detect the difference between 2 given colors.
