@@ -10,10 +10,17 @@ Otherwise, if your background and text color is the same, the function will comp
 
 Ratio = 1, it means that 2 colors are the same. Lower the ratio is, your color will be visible.
 
+### Install
+```bash
+npm install colors-diff
+```
+
 ### Usage
 You have one main function, is `colorsDiff`. This function takes 4 parameters like this:
 
 ```javascript
+import colorsDiff from 'colors-diff';
+
 colorsDiff(fColor, sColor, acptRatio, rplColors)
 ```
 
