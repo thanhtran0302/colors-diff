@@ -10,12 +10,8 @@
  * @param {Number} acptRatio
  * @param {Array.<String>} rplColors
  */
-export default function colorsDiff(fColor, sColor, acptRatio, rplColors/*, opts*/) {
-    if (!fColor || !sColor) {
-        return '#FFFFFF';
-    }
-
-    //let options = buildOpts(opts);
+export default function colorsDiff(fColor, sColor, acptRatio, rplColors, opts) {
+    let options = buildOpts(opts);
     let fRGB = hexOrRgbToRGBArray(fColor);
     let sRGB = hexOrRgbToRGBArray(sColor);
 
@@ -27,7 +23,7 @@ export default function colorsDiff(fColor, sColor, acptRatio, rplColors/*, opts*
         return invertColor([], hexToRGBArray(sColor));
     }
 
-    /*if (rplColors.length === 0) {
+    if (rplColors.length === 0) {
         if (options.invertColor) {
             return invertColor([], hexToRGBArray(sColor));
         }
@@ -36,7 +32,7 @@ export default function colorsDiff(fColor, sColor, acptRatio, rplColors/*, opts*
 
     if (options.invertColor) {
         return invertColor(rplColors, sRGB);
-    }*/
+    }
     return minColorDiff(rplColors, sColor, acptRatio);
 }
 
@@ -55,7 +51,7 @@ function hexOrRgbToRGBArray(color) {
     return null;
 }
 
-/*function buildOpts(opts) {
+function buildOpts(opts) {
     let options = {};
 
     if (typeof opts !== 'undefined') {
@@ -65,7 +61,7 @@ function hexOrRgbToRGBArray(color) {
         options.invertColor = false;
     }
     return options;
-}*/
+}
 
 /**
  * Check if the given string is a hex format.
